@@ -787,6 +787,9 @@ def _check_consistency(zipped_file_lists, n_total_files):
         n_total_files (int): The total number of files expected in the list.
     """
 
+    print(f"len of zipped files: {len(list(zipped_file_lists))}")
+    print(f"len of total files: {n_total_files}")
+
     assert len(list(zipped_file_lists)) == n_total_files, "Files are missing"
 
     for file_tuple in zipped_file_lists:
