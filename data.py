@@ -46,6 +46,8 @@ class SALICON:
             download.download_salicon(parent_path)
 
     def load_data(self):
+        print(self._dir_stimuli_train)
+        print(self._dir_saliency_train)
         train_list_x = _get_file_list(self._dir_stimuli_train)
         train_list_y = _get_file_list(self._dir_saliency_train)
 
