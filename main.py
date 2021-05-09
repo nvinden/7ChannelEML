@@ -214,6 +214,8 @@ def main():
        or testing procedure for a model.
     """
 
+    print("Num GPUs Available: ", len(tf.config.list_physical_devices('GPU')))
+
     current_path = os.path.dirname(os.path.realpath(__file__))
     default_data_path = current_path + "/data"
 
