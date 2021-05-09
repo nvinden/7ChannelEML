@@ -214,7 +214,10 @@ def main():
        or testing procedure for a model.
     """
 
-    print("Num GPUs Available: ", len(tf.config.list_physical_devices('GPU')))
+    if tf.test.gpu_device_name(): 
+        print('Default GPU Device:{}'.format(tf.test.gpu_device_name()))
+    else:
+       print("Please install GPU version of TF")
 
     current_path = os.path.dirname(os.path.realpath(__file__))
     default_data_path = current_path + "/data"
