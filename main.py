@@ -55,8 +55,6 @@ def define_paths(current_path, args):
         "weights": weights_path
     }
 
-    print(paths)
-
     return paths
 
 
