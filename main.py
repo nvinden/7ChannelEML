@@ -121,6 +121,7 @@ def train_model(dataset, paths, device):
 
                 history.update_train_step(error)
                 progbar.update_train_step(batch)
+                print(".")
 
             sess.run(valid_init_op)
 
