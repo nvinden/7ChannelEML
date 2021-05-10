@@ -603,7 +603,7 @@ def _parse_function(files, target_size):
 
     for count, filename in enumerate(files):
         image_str = tf.read_file(filename)
-        channels = 1 if count == 3 else 3
+        channels = 1 if count == 3 or count == 2 else 3
 
         image = tf.cond(tf.image.is_jpeg(image_str),
                         lambda: tf.image.decode_jpeg(image_str,
