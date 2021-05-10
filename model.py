@@ -47,13 +47,13 @@ class MSINET:
         print(rgb.shape)
         print(dark.shape)
 
-        img = Image.fromarray(images.numpy()[0])
+        img = Image.fromarray(tf.make_ndarray(images))
         img.save("image.jpg")
 
-        img = Image.fromarray(rgb.numpy()[0])
+        img = Image.fromarray(tf.make_ndarray(rgb))
         img.save("rgb.jpg")
 
-        img = Image.fromarray(dark.numpy()[0])
+        img = Image.fromarray(tf.make_ndarray(dark))
         img.save("dark.jpg")
 
 
