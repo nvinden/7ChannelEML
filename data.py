@@ -76,9 +76,6 @@ class SALICON:
         valid_set = _fetch_dataset((valid_list_x, valid_list_rgb, valid_list_dark, valid_list_y),
                                    self._target_size, False)
 
-        print(valid_list_x)
-        print(valid_list_rgb)
-
         return (train_set, valid_set)
 
 
@@ -606,7 +603,7 @@ def _parse_function(files, target_size):
 
     for count, filename in enumerate(files):
         image_str = tf.read_file(filename)
-        channels = 3 if count == 0 or 1 or 2 else 1
+        channels = 1 if count == 3 else 3
 
         image = tf.cond(tf.image.is_jpeg(image_str),
                         lambda: tf.image.decode_jpeg(image_str,
