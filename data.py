@@ -76,6 +76,8 @@ class SALICON:
         valid_set = _fetch_dataset((valid_list_x, valid_list_y, valid_list_rgb, valid_list_dark),
                                    self._target_size, False)
 
+        print(train_set)
+
         return (train_set, valid_set)
 
 
@@ -567,7 +569,6 @@ def _fetch_dataset(files, target_size, shuffle, online=False):
     """
 
     dataset = tf.data.Dataset.from_tensor_slices(files)
-    print(list(dataset.as_numpy_iterator()))
 
     if shuffle:
         dataset = dataset.shuffle(len(files[0]))
