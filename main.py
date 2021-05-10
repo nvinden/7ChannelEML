@@ -75,10 +75,12 @@ def train_model(dataset, paths, device):
 
     next_element, train_init_op, valid_init_op = iterator
 
-    input_images, ground_truths = next_element[:2]
+    input_images, rgb_image, dark_image, ground_truths = next_element[:4]
 
-    print(f"input images {input_images.shape}")
-    print(f"ground truths {ground_truths.shape}")
+    print(f"input images {input_images}")
+    print(f"rgb truths {rgb_image}")
+    print(f"dark truths {dark_image}")
+    print(f"ground truths {ground_truths}")
 
     input_plhd = tf.placeholder_with_default(input_images,
                                              (None, None, None, 3),
