@@ -501,6 +501,8 @@ def get_dataset_iterator(phase, dataset, data_path):
                                                    train_set.output_shapes)
         next_element = iterator.get_next()
 
+        print(f"next element {next_element}")
+
         train_init_op = iterator.make_initializer(train_set)
         valid_init_op = iterator.make_initializer(valid_set)
 
