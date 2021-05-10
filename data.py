@@ -567,6 +567,7 @@ def _fetch_dataset(files, target_size, shuffle, online=False):
     """
 
     dataset = tf.data.Dataset.from_tensor_slices(files)
+    print(list(dataset.as_numpy_iterator()))
 
     if shuffle:
         dataset = dataset.shuffle(len(files[0]))
