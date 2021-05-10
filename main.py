@@ -80,6 +80,9 @@ def train_model(dataset, paths, device):
     input_plhd = tf.placeholder_with_default(input_images,
                                              (None, None, None, 3),
                                              name="input")
+
+    print(input_plhd)
+
     msi_net = model.MSINET()
 
     predicted_maps = msi_net.forward(input_plhd)
