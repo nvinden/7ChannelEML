@@ -61,7 +61,7 @@ class SALICON:
         _check_consistency(zip(train_list_x, train_list_rgb), 10000)
         _check_consistency(zip(train_list_x, train_list_dark), 10000)
 
-        train_set = _fetch_dataset((train_list_x, train_list_y, train_list_rgb, train_list_dark),
+        train_set = _fetch_dataset((train_list_x, train_list_rgb, train_list_dark, train_list_y),
                                    self._target_size, True)
 
         valid_list_x = _get_file_list(self._dir_stimuli_valid)
@@ -73,10 +73,11 @@ class SALICON:
         _check_consistency(zip(valid_list_x, valid_list_rgb), 5000)
         _check_consistency(zip(valid_list_x, valid_list_dark), 5000)
 
-        valid_set = _fetch_dataset((valid_list_x, valid_list_y, valid_list_rgb, valid_list_dark),
+        valid_set = _fetch_dataset((valid_list_x, valid_list_rgb, valid_list_dark, valid_list_y),
                                    self._target_size, False)
 
-        print(train_set)
+        print(valid_list_x)
+        print(valid_list_rgb)
 
         return (train_set, valid_set)
 
@@ -805,7 +806,7 @@ def _check_consistency(zipped_file_lists, n_total_files):
     print(f"len of zipped files: {len(list(zipped_file_lists))}")
     print(f"len of total files: {n_total_files}")
 
-    #assert len(list(zipped_file_lists)) == n_total_files, "Files are missing"
+    assert len(list(zipped_file_lists)) == n_total_files, "Files are missing"
 
     for file_tuple in zipped_file_lists:
         file_names = [os.path.basename(entry) for entry in list(file_tuple)]
