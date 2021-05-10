@@ -425,7 +425,7 @@ class MSINET:
                                                      "vgg16_hybrid")
             self._pretraining()
 
-            loader = tf.train.Saver(self._mapping)
+            loader = tf.train.Saver(var_list = self._mapping)
             loader.restore(sess, paths["weights"] + vgg16_name + ".ckpt")
 
         return saver
