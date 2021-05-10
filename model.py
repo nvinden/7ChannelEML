@@ -43,10 +43,6 @@ class MSINET:
         imagenet_mean = tf.constant([103.939, 116.779, 123.68, 60, 60, 60, 40])
         imagenet_mean = tf.reshape(imagenet_mean, [1, 1, 1, 7])
 
-        print(images)
-        print(rgb)
-        print(dark)
-
         images = tf.concat([images, rgb, dark], axis = 3)
 
         images -= imagenet_mean
@@ -319,7 +315,7 @@ class MSINET:
            pretrained VGG16 checkpoint for correct initialization.
         """
 
-        for var in tf.global_variables()[:26]:
+        for var in tf.global_variables()[2:26]:
             key = var.name.split("/", 1)[1]
             key = key.replace("kernel:0", "weights")
             key = key.replace("bias:0", "biases")
