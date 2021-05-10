@@ -86,11 +86,11 @@ def train_model(dataset, paths, device):
                                              (None, None, None, 3),
                                              name="input")
 
-    rgb_plhd = tf.placeholder_with_default(input_images,
+    rgb_plhd = tf.placeholder_with_default(rgb_image,
                                              (None, None, None, 3),
                                              name="rgb")
 
-    dark_plhd = tf.placeholder_with_default(input_images,
+    dark_plhd = tf.placeholder_with_default(dark_image,
                                              (None, None, None, 1),
                                              name="dark")
 
