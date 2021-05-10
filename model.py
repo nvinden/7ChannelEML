@@ -43,6 +43,8 @@ class MSINET:
         imagenet_mean = tf.reshape(imagenet_mean, [1, 1, 1, 7])
 
         print(images.shape)
+        print(rgb.shape)
+        print(dark.shape)
 
         images = tf.concat([images, rgb, dark], axis = 3)
 
