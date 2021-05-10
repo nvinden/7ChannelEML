@@ -569,6 +569,9 @@ def _fetch_dataset(files, target_size, shuffle, online=False):
                 instances along with their shapes and file paths.
     """
 
+    print(f"FILES: {files}")
+    print(f"FILES: {files.shape}")
+
     dataset = tf.data.Dataset.from_tensor_slices(files)
 
     if shuffle:
@@ -606,7 +609,7 @@ def _parse_function(files, target_size):
 
     for count, filename in enumerate(files):
         image_str = tf.read_file(filename)
-        channels = 3 if count == 0 else 1
+        channels = 3 if count == 0 or 1 or 2 else 1
 
         image = tf.cond(tf.image.is_jpeg(image_str),
                         lambda: tf.image.decode_jpeg(image_str,
