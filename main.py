@@ -91,7 +91,7 @@ def train_model(dataset, paths, device):
                                              name="rgb")
 
     dark_plhd = tf.placeholder_with_default(input_images,
-                                             (None, None, None, 3),
+                                             (None, None, None, 1),
                                              name="dark")
 
     msi_net = model.MSINET()
