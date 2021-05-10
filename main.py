@@ -86,9 +86,17 @@ def train_model(dataset, paths, device):
                                              (None, None, None, 3),
                                              name="input")
 
+    rgb_plhd = tf.placeholder_with_default(input_images,
+                                             (None, None, None, 3),
+                                             name="rgb")
+
+    dark_plhd = tf.placeholder_with_default(input_images,
+                                             (None, None, None, 3),
+                                             name="dark")
+
     msi_net = model.MSINET()
 
-    predicted_maps = msi_net.forward(input_plhd)
+    predicted_maps = msi_net.forward(input_plhd, rgb_plhd, dark_plhd)
 
     optimizer, loss = msi_net.train(ground_truths, predicted_maps,
                                     config.PARAMS["learning_rate"])

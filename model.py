@@ -28,7 +28,7 @@ class MSINET:
             self._channel_axis = 3
             self._dims_axis = (1, 2)
 
-    def _encoder(self, images):
+    def _encoder(self, images, rgb, dark):
         """The encoder of the model consists of a pretrained VGG16 architecture
            with 13 convolutional layers. All dense layers are discarded and the
            last 3 layers are dilated at a rate of 2 to account for the omitted
@@ -39,15 +39,19 @@ class MSINET:
                                       batches used as input to the network.
         """
 
-        imagenet_mean = tf.constant([103.939, 116.779, 123.68])
-        imagenet_mean = tf.reshape(imagenet_mean, [1, 1, 1, 3])
+        imagenet_mean = tf.constant([103.939, 116.779, 123.68, 60, 60, 60, 40])
+        imagenet_mean = tf.reshape(imagenet_mean, [1, 1, 1, 7])
+
+        print(images.shape)
+
+        dsjdakjdk
 
         images -= imagenet_mean
 
         if self._data_format == "channels_first":
             images = tf.transpose(images, (0, 3, 1, 2))
 
-        layer01 = tf.layers.conv2d(images, 64, 3,
+        layer01 = tf.layers.conv2d(images, 64, 7,
                                    padding="same",
                                    activation=tf.nn.relu,
                                    data_format=self._data_format,
@@ -318,7 +322,7 @@ class MSINET:
             key = key.replace("bias:0", "biases")
             self._mapping[key] = var
 
-    def forward(self, images):
+    def forward(self, images, rgb, dark):
         """Public method to forward RGB images through the whole network
            architecture and retrieve the resulting output.
 
@@ -331,7 +335,7 @@ class MSINET:
                              predicted saliency maps.
         """
 
-        self._encoder(images)
+        self._encoder(images, rgb, dark)
         self._aspp(self._output)
         self._decoder(self._output)
         self._normalize(self._output)
