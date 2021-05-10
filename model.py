@@ -8,6 +8,7 @@ import config
 import download
 import loss
 
+from PIL import Image
 
 class MSINET:
     """The class representing the MSI-Net based on the VGG16 model. It
@@ -46,7 +47,18 @@ class MSINET:
         print(rgb.shape)
         print(dark.shape)
 
+        img = Image.fromarray(images[0])
+        img.save("image.jpg")
+
+        img = Image.fromarray(rgb[0])
+        img.save("rgb.jpg")
+
+        img = Image.fromarray(dark[0])
+        img.save("dark.jpg")
+
+
         images = tf.concat([images, rgb, dark], axis = 3)
+
 
         print(images.shape)
 
