@@ -77,11 +77,12 @@ def train_model(dataset, paths, device):
 
     input_images, ground_truths = next_element[:2]
 
+    print(f"input images {input_images.shape}")
+    print(f"ground truths {ground_truths.shape}")
+
     input_plhd = tf.placeholder_with_default(input_images,
                                              (None, None, None, 3),
                                              name="input")
-
-    print(input_plhd)
 
     msi_net = model.MSINET()
 
