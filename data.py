@@ -39,6 +39,12 @@ class SALICON:
         self._dir_saliency_train = data_path + "saliency/train"
         self._dir_saliency_valid = data_path + "saliency/val"
 
+        self._dir_rgb_train = data_path + "rgb/train"
+        self._dir_rgb_valid = data_path + "rgb/val"
+
+        self._dir_dark_train = data_path + "dark/train"
+        self._dir_dark_valid = data_path + "dark/val"
+
         if not os.path.exists(data_path):
             parent_path = os.path.dirname(data_path[:-1])
             parent_path = os.path.join(parent_path, "")
@@ -46,23 +52,28 @@ class SALICON:
             download.download_salicon(parent_path)
 
     def load_data(self):
-        print("DATA:")
-        print(self._dir_stimuli_train)
-        print(self._dir_saliency_train)
         train_list_x = _get_file_list(self._dir_stimuli_train)
         train_list_y = _get_file_list(self._dir_saliency_train)
+        train_list_rgb = _get_file_list(self._dir_rgb_train)
+        train_list_dark = _get_file_list(self._dir_rgb_train)
 
         _check_consistency(zip(train_list_x, train_list_y), 10000)
+        _check_consistency(zip(train_list_x, train_list_rgb), 10000)
+        _check_consistency(zip(train_list_x, train_list_dark), 10000)
 
-        train_set = _fetch_dataset((train_list_x, train_list_y),
+        train_set = _fetch_dataset((train_list_x, train_list_y, train_list_rgb, train_list_dark),
                                    self._target_size, True)
 
         valid_list_x = _get_file_list(self._dir_stimuli_valid)
         valid_list_y = _get_file_list(self._dir_saliency_valid)
+        valid_list_rgb = _get_file_list(self._dir_rgb_valid)
+        valid_list_dark = _get_file_list(self._dir_dark_valid)
 
         _check_consistency(zip(valid_list_x, valid_list_y), 5000)
+        _check_consistency(zip(valid_list_x, valid_list_rgb), 5000)
+        _check_consistency(zip(valid_list_x, valid_list_dark), 5000)
 
-        valid_set = _fetch_dataset((valid_list_x, valid_list_y),
+        valid_set = _fetch_dataset((valid_list_x, valid_list_y, valid_list_rgb, valid_list_dark),
                                    self._target_size, False)
 
         return (train_set, valid_set)

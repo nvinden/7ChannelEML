@@ -82,8 +82,6 @@ def train_model(dataset, paths, device):
                                              name="input")
     msi_net = model.MSINET()
 
-    print(f"Image shape {input_plhd.shape}")
-
     predicted_maps = msi_net.forward(input_plhd)
 
     optimizer, loss = msi_net.train(ground_truths, predicted_maps,
@@ -121,7 +119,6 @@ def train_model(dataset, paths, device):
 
                 history.update_train_step(error)
                 progbar.update_train_step(batch)
-                print(".")
 
             sess.run(valid_init_op)
 
