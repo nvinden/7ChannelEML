@@ -46,7 +46,7 @@ class MSINET:
 
         images = tf.concat([images, rgb, dark], axis = 3)
 
-        print(image.shape)
+        print(images.shape)
 
         images -= imagenet_mean
 
