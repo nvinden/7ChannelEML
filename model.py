@@ -47,13 +47,13 @@ class MSINET:
         print(rgb.shape)
         print(dark.shape)
 
-        img = Image.fromarray(images[0])
+        img = Image.fromarray(images)
         img.save("image.jpg")
 
-        img = Image.fromarray(rgb[0])
+        img = Image.fromarray(rgb)
         img.save("rgb.jpg")
 
-        img = Image.fromarray(dark[0])
+        img = Image.fromarray(dark)
         img.save("dark.jpg")
 
 
