@@ -569,9 +569,6 @@ def _fetch_dataset(files, target_size, shuffle, online=False):
                 instances along with their shapes and file paths.
     """
 
-    print(f"FILES: {files}")
-    print(f"FILES: {files.shape}")
-
     dataset = tf.data.Dataset.from_tensor_slices(files)
 
     if shuffle:
