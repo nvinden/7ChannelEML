@@ -55,7 +55,7 @@ class SALICON:
         train_list_x = _get_file_list(self._dir_stimuli_train)
         train_list_y = _get_file_list(self._dir_saliency_train)
         train_list_rgb = _get_file_list(self._dir_rgb_train)
-        train_list_dark = _get_file_list(self._dir_rgb_train)
+        train_list_dark = _get_file_list(self._dir_dark_train)
 
         _check_consistency(zip(train_list_x, train_list_y), 10000)
         _check_consistency(zip(train_list_x, train_list_rgb), 10000)
