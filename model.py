@@ -324,6 +324,7 @@ class MSINET:
             key = var.name.split("/", 1)[1]
             key = key.replace("kernel:0", "weights")
             key = key.replace("bias:0", "biases")
+            print(f"key: {key} var: {var}")
             self._mapping[key] = var
 
     def forward(self, images, rgb, dark):
