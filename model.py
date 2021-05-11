@@ -40,21 +40,35 @@ class MSINET:
                                       batches used as input to the network.
         """
 
-        imagenet_mean = tf.constant([103.939, 116.779, 123.68, 60, 60, 60, 40])
-        imagenet_mean = tf.reshape(imagenet_mean, [1, 1, 1, 7])
+        imagenet_mean = tf.constant([103.939, 116.779, 123.68])
+        imagenet_mean = tf.reshape(imagenet_mean, [1, 1, 1, 3])
 
-        images = tf.concat([images, rgb, dark], axis = 3)
+        add_mean = tf.constant([60, 60, 60, 40])
+        add_mean = tf.reshape(add_mean, [1, 1, 1, 4])
+
+        add = tf.concat([rgb, dark], axis = 3)
 
         images -= imagenet_mean
+        add -= add_mean
 
         if self._data_format == "channels_first":
             images = tf.transpose(images, (0, 3, 1, 2))
+            add = tf.transpose(add, (0, 3, 1, 2))
 
         layer01 = tf.layers.conv2d(images, 64, 3,
                                    padding="same",
                                    activation=tf.nn.relu,
                                    data_format=self._data_format,
                                    name="conv1/conv1_1")
+        
+        add_conv = tf.layers.conv2d(add, 64, 3,
+                                   padding="same",
+                                   activation=tf.nn.relu,
+                                   data_format=self._data_format,
+                                   name="add")
+
+        print(add_conv.shape)
+        print(layer01.shape)
 
         layer02 = tf.layers.conv2d(layer01, 64, 3,
                                    padding="same",
