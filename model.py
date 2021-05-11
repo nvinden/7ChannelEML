@@ -69,8 +69,7 @@ class MSINET:
                                    data_format=self._data_format,
                                    name="conv1/add")
 
-        print(add_conv.shape)
-        print(layer01.shape)
+        layers01 = layers01 + add_conv
 
         layer02 = tf.layers.conv2d(layer01, 64, 3,
                                    padding="same",
