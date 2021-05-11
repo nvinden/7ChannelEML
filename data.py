@@ -754,6 +754,8 @@ def _get_file_list(data_path):
         list, str: A sorted list that holds the paths to all file instances.
     """
 
+    print(data_path)
+
     data_list = []
 
     if os.path.isfile(data_path):
