@@ -332,7 +332,8 @@ class MSINET:
         """
 
         for i, var in enumerate(tf.global_variables()[0:26]):
-            if var.name == "conv1/add":
+            if i == 2 or i == 3:
+                print("dookie found")
                 continue
             key = var.name.split("/", 1)[1]
             key = key.replace("kernel:0", "weights")
