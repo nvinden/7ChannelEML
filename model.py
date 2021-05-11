@@ -67,7 +67,7 @@ class MSINET:
                                    padding="same",
                                    activation=tf.nn.relu,
                                    data_format=self._data_format,
-                                   name="/add")
+                                   name="conv1/add")
 
         print(add_conv.shape)
         print(layer01.shape)
@@ -332,7 +332,7 @@ class MSINET:
         """
 
         for var in enumerate(tf.global_variables()[0:26]):
-            if var.name == "/add":
+            if var.name == "conv1/add":
                 continue
             key = var.name.split("/", 1)[1]
             key = key.replace("kernel:0", "weights")
