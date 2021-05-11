@@ -130,7 +130,6 @@ def train_model(dataset, paths, device):
 
             for batch in range(n_train_batches):
                 _, error = sess.run([optimizer, loss])
-                print("Session Iteration")
 
                 history.update_train_step(error)
                 progbar.update_train_step(batch)

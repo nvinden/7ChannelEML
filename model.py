@@ -50,7 +50,7 @@ class MSINET:
         if self._data_format == "channels_first":
             images = tf.transpose(images, (0, 3, 1, 2))
 
-        layer01 = tf.layers.conv2d(images, 64, 7,
+        layer01 = tf.layers.conv2d(images, 64, 3,
                                    padding="same",
                                    activation=tf.nn.relu,
                                    data_format=self._data_format,
@@ -315,7 +315,7 @@ class MSINET:
            pretrained VGG16 checkpoint for correct initialization.
         """
 
-        for var in tf.global_variables()[2:26]:
+        for var in tf.global_variables()[0:26]:
             key = var.name.split("/", 1)[1]
             key = key.replace("kernel:0", "weights")
             key = key.replace("bias:0", "biases")
