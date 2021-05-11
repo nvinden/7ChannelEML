@@ -319,6 +319,7 @@ class MSINET:
             if i == 0 and var.shape[2] == 7:
                 print("HERE")
                 var = var[:,:,0:3,:]
+                var.name = "conv1/conv1_1"
                 print(var.shape)
             key = var.name.split("/", 1)[1]
             key = key.replace("kernel:0", "weights")
