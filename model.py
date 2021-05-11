@@ -43,12 +43,14 @@ class MSINET:
         imagenet_mean = tf.constant([103.939, 116.779, 123.68])
         imagenet_mean = tf.reshape(imagenet_mean, [1, 1, 1, 3])
 
-        add_mean = tf.constant([60, 60, 60, 40])
+        add_mean = tf.constant([60, 60, 60, 40], dtype=tf.float32)
         add_mean = tf.reshape(add_mean, [1, 1, 1, 4])
 
         add = tf.concat([rgb, dark], axis = 3)
 
         images -= imagenet_mean
+
+        add = tf.dtypes.cast(add, float32)
         add -= add_mean
 
         if self._data_format == "channels_first":
