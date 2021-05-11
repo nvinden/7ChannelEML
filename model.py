@@ -50,7 +50,7 @@ class MSINET:
 
         images -= imagenet_mean
 
-        add = tf.dtypes.cast(add, float32)
+        add = tf.dtypes.cast(add, tf.float32)
         add -= add_mean
 
         if self._data_format == "channels_first":
