@@ -315,7 +315,9 @@ class MSINET:
            pretrained VGG16 checkpoint for correct initialization.
         """
 
-        for var in tf.global_variables()[0:26]:
+        for i, var in enumerate(tf.global_variables()[0:26]):
+            if i == 0:
+                print("FIRST ONE")
             key = var.name.split("/", 1)[1]
             key = key.replace("kernel:0", "weights")
             key = key.replace("bias:0", "biases")
