@@ -316,10 +316,8 @@ class MSINET:
         """
 
         for i, var in enumerate(tf.global_variables()[0:26]):
-            '''
-            if i == 0 and var.shape[2] == 3:
-                var = tf.concat((var, tf.zeros((3, 3, 4, 64))), axis=2)
-            '''
+            if i == 0 and var.shape[2] == 7:
+                var = var[:,:,0:3,:]
             key = var.name.split("/", 1)[1]
             key = key.replace("kernel:0", "weights")
             key = key.replace("bias:0", "biases")
