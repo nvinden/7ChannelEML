@@ -67,7 +67,7 @@ class MSINET:
                                    padding="same",
                                    activation=tf.nn.relu,
                                    data_format=self._data_format,
-                                   name="add")
+                                   name="/add")
 
         print(add_conv.shape)
         print(layer01.shape)
