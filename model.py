@@ -331,7 +331,7 @@ class MSINET:
            pretrained VGG16 checkpoint for correct initialization.
         """
 
-        for var in enumerate(tf.global_variables()[0:26]):
+        for i, var in enumerate(tf.global_variables()[0:26]):
             if var.name == "conv1/add":
                 continue
             key = var.name.split("/", 1)[1]
